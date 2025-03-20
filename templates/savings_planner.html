@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Savings & Retirement Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Savings & Retirement Planner</h1>
+
+        <form method="POST">
+            <label for="goal_name">Goal Name:</label>
+            <input type="text" name="goal_name" required>
+
+            <label for="goal_amount">Target Amount (₹):</label>
+            <input type="number" name="goal_amount" required>
+
+            <label for="current_savings">Current Savings (₹):</label>
+            <input type="number" name="current_savings" required>
+
+            <label for="monthly_contribution">Monthly Contribution (₹):</label>
+            <input type="number" name="monthly_contribution" required>
+
+            <label for="target_years">Years to Goal:</label>
+            <input type="number" name="target_years" required>
+
+            <label for="expected_return">Expected Annual Return (%):</label>
+            <input type="number" name="expected_return" required value="7">
+
+            <button type="submit">Calculate Savings</button>
+        </form>
+
+        {% if future_savings is not none %}
+        <div class="result">
+            <h3>✅ Estimated Future Savings: ₹{{ future_savings }}</h3>
+        </div>
+        {% endif %}
+
+        {% if savings_tips %}
+        <div class="savings-tips">
+            <h3>💡 Tips to Improve Savings:</h3>
+            <ul>
+                {% for tip in savings_tips %}
+                    <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if investment_recommendations %}
+        <div class="investment-recommendations">
+            <h3>📈 Investment Recommendations:</h3>
+            <ul>
+                {% for recommendation in investment_recommendations %}
+                    <li>{{ recommendation }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

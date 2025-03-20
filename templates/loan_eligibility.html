@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 20px auto;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #0056b3;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        h2 {
+            color: green;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loan Eligibility Checker</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('sip_calculator') }}">SIP Calculator</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <h2>Loan Eligibility Prediction</h2>
+        <form method="POST">
+            <label>No. of Dependents:</label>
+            <input type="number" name="no_of_dependents" required>
+
+            <label>Education:</label>
+            <select name="education">
+                <option value="Graduate">Graduate</option>
+                <option value="Not Graduate">Not Graduate</option>
+            </select>
+
+            <label>Self Employed:</label>
+            <select name="self_employed">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Annual Income (₹):</label>
+            <input type="number" name="income_annum" required>
+
+            <label>Loan Amount (₹):</label>
+            <input type="number" name="loan_amount" required>
+
+            <label>Loan Term (Months):</label>
+            <input type="number" name="loan_term" required>
+
+            <label>CIBIL Score:</label>
+            <input type="number" name="cibil_score" required>
+
+            <label>Residential Assets Value (₹):</label>
+            <input type="number" name="residential_assets_value" required>
+
+            <label>Commercial Assets Value (₹):</label>
+            <input type="number" name="commercial_assets_value" required>
+
+            <label>Luxury Assets Value (₹):</label>
+            <input type="number" name="luxury_assets_value" required>
+
+            <label>Bank Asset Value (₹):</label>
+            <input type="number" name="bank_asset_value" required>
+
+            <button type="submit">Check Eligibility</button>
+        </form>
+
+        {% if result %}
+            <h2>Loan Status: {{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

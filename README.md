@@ -1,1 +1,2 @@
-# FINANCIAL-ADVISOR-AND-LOAN-ELIGIBILITY-CHECKER-USING-GEMINI-AI-AND-MACHINE-LEARNING
+# loan-eligibility-and-recommendation-system
+pedicts loan eligibility and used LLM for context generation(recommendatiom)

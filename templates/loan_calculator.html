@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Repayment Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loan Repayment Calculator</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('sip_calculator') }}">SIP Calculator</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="loan-calculator">
+            <h2>Calculate Loan EMI</h2>
+            <form method="POST">
+                <label for="principal">Loan Amount (₹):</label>
+                <input type="number" id="principal" name="principal" required>
+
+                <label for="rate">Interest Rate (%):</label>
+                <input type="number" id="rate" name="rate" required>
+
+                <label for="years">Loan Duration (Years):</label>
+                <input type="number" id="years" name="years" required>
+
+                <button type="submit">Calculate</button>
+            </form>
+
+            {% if emi %}
+            <div id="loan-result">
+                <h3>Result</h3>
+                <p><strong>EMI (Monthly Payment):</strong> ₹{{ emi }}</p>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div id="error-message" style="color: red;">
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
